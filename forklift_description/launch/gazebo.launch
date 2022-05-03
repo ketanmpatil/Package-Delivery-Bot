@@ -1,0 +1,36 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find forklift_description)/world/warehouse.sdf"/> <!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable -->
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/> <!-- Inert - see gazebo_ros_pkgs issue #491 -->
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find forklift_description)/urdf/forklift.urdf'" />
+
+  <node name="spawn_model" pkg="gazebo_ros" type="spawn_model"
+    args="-urdf -param robot_description -model forklift -z 0.2" output="screen" />
+  
+  <!-- <node pkg="forklift_description" type="attach.py" name="gazebo_ros_link_attacher" output="screen"/> -->
+
+  <node name="spawn_box" pkg="gazebo_ros" type="spawn_model"
+    args="-file $(find forklift_description)/models/A/model.sdf -sdf -model A -x 0.15 -y 0.0096 -z 0.35" output="screen" />
+
+  <param name="use_sim_time" value="true"/>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="80.0" />
+      <param name="tf_prefix" type="string" value="" />
+  </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <param name="/use_gui" value="true"/>
+      <rosparam param="/source_list">[/joint_states]</rosparam>
+  </node>
+  
+  <!-- <node pkg="forklift_perception" type="perception.py" name="perception" output="screen"/> -->
+
+</launch>

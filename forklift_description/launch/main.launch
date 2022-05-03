@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find forklift_description)/launch/gazebo.launch"/>
+    <include file="$(find forklift_nav)/launch/nav.launch"/>
+</launch>

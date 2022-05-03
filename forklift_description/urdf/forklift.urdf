@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="forklift" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find forklift_description)/urdf/forklift.gazebo" />
+  
+  <material name="Red" >
+    <color rgba="0.596078431372549 0.0 0.00784313725490196 1.0" />
+  </material>
+
+  <material name="Black" >
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00925521976727797 -1.54641920405782E-17 0.132125391694854"
+        rpy="0 0 0" />
+      <mass
+        value="10.9374274650336" />
+      <inertia
+        ixx="0.30572247759171"
+        ixy="3.18906883482508E-16"
+        ixz="-0.0274538749703898"
+        iyy="0.75181695993408"
+        iyz="5.71897955175235E-18"
+        izz="0.799728917395017" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="Red">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="lidar">
+    <inertial>
+      <origin
+        xyz="0 3.6723745633028E-19 0.005"
+        rpy="0 0 0" />
+      <mass
+        value="0.00638136007760427" />
+      <inertia
+        ixx="3.02449878678119E-07"
+        ixy="0"
+        ixz="-7.70735925808572E-40"
+        iyy="3.02449878678119E-07"
+        iyz="-1.31840974560437E-39"
+        izz="4.98543756062834E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/lidar.STL" />
+      </geometry>
+      <material
+        name="Black">
+        
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0.319548364155679 0 0.45"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="camera">
+    <inertial>
+      <origin
+        xyz="0 -2.31010326497581E-19 -0.0100000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.0183783170235003" />
+      <inertia
+        ixx="1.6463909000219E-06"
+        ixy="0"
+        ixz="-5.32732671918885E-39"
+        iyy="1.6463909000219E-06"
+        iyz="0"
+        izz="2.06756066514378E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/camera.STL" />
+      </geometry>
+      <material
+        name="Black">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.219516723369338 0 0.411150341514111"
+      rpy="0 1.54 1.54" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="fr_wheel">
+    <inertial>
+      <origin
+        xyz="0 -0.00868532280538781 6.93889390390723E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.219825091953312" />
+      <inertia
+        ixx="0.000140655460092548"
+        ixy="5.57316638511885E-21"
+        ixz="4.13832456557392E-37"
+        iyy="0.000257011829669543"
+        iyz="1.78480096134828E-37"
+        izz="0.000140655460092548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/fr_wheel.STL" />
+      </geometry>
+      <material
+        name="Black">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/fr_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.28 -0.175 0.025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fr_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="br_wheel">
+    <inertial>
+      <origin
+        xyz="0 -0.00868532280538781 3.46944695195361E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.219825091953312" />
+      <inertia
+        ixx="0.000140655460092548"
+        ixy="5.57316638511885E-21"
+        ixz="4.13832456557392E-37"
+        iyy="0.000257011829669543"
+        iyz="1.78480096134828E-37"
+        izz="0.000140655460092548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/br_wheel.STL" />
+      </geometry>
+      <material
+        name="Black">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/br_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="br_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.28 -0.175 0.025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="br_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="fl_wheel">
+    <inertial>
+      <origin
+        xyz="0 0.00868532280538781 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.219825091953312" />
+      <inertia
+        ixx="0.000140655460092548"
+        ixy="8.84853867530054E-21"
+        ixz="1.61323159923495E-20"
+        iyy="0.000257011829669543"
+        iyz="-1.99901948216292E-20"
+        izz="0.000140655460092548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/fl_wheel.STL" />
+      </geometry>
+      <material
+        name="Black">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/fl_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.28 0.175 0.025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fl_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="bl_wheel">
+    <inertial>
+      <origin
+        xyz="0 0.00868532280538781 -3.46944695195361E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.219825091953312" />
+      <inertia
+        ixx="0.000140655460092548"
+        ixy="-1.07492809526035E-20"
+        ixz="-2.16678527678537E-20"
+        iyy="0.000257011829669543"
+        iyz="2.62155529134627E-21"
+        izz="0.000140655460092548" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/bl_wheel.STL" />
+      </geometry>
+      <material
+        name="Black">
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://forklift_description/meshes/bl_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="bl_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.28 0.175 0.025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="bl_wheel" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>
